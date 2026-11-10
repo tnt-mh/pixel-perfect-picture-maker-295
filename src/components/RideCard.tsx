@@ -48,7 +48,7 @@ export function RideCard({ ride, driver, verified, seatsLeft }: Props) {
   );
 }
 
-export function Avatar({ name, url, size = 32 }: { name: string; url?: string | null; size?: number }) {
+export function Avatar({ name, url, size = 32 }: { name: string; url?: string | null | undefined; size?: number }) {
   const initials = name.split(" ").map((s) => s[0]).slice(0, 2).join("").toUpperCase();
   return url ? (
     <img src={url} alt="" style={{ width: size, height: size }} className="rounded-full object-cover" />

@@ -14,6 +14,8 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedPublishRouteImport } from './routes/_authenticated/publish'
 import { Route as AuthenticatedSearchRouteImport } from './routes/_authenticated/search'
 import { Route as AuthenticatedTripsRouteImport } from './routes/_authenticated/trips'
 import { Route as AuthenticatedRideIdRouteImport } from './routes/_authenticated/ride.$id'
@@ -42,6 +44,16 @@ const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPublishRoute = AuthenticatedPublishRouteImport.update({
+  id: '/publish',
+  path: '/publish',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSearchRoute = AuthenticatedSearchRouteImport.update({
   id: '/search',
   path: '/search',
@@ -63,6 +75,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/publish': typeof AuthenticatedPublishRoute
   '/search': typeof AuthenticatedSearchRoute
   '/trips': typeof AuthenticatedTripsRoute
   '/ride/$id': typeof AuthenticatedRideIdRoute
@@ -72,6 +86,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
   '/home': typeof AuthenticatedHomeRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/publish': typeof AuthenticatedPublishRoute
   '/search': typeof AuthenticatedSearchRoute
   '/trips': typeof AuthenticatedTripsRoute
   '/ride/$id': typeof AuthenticatedRideIdRoute
@@ -83,6 +99,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/publish': typeof AuthenticatedPublishRoute
   '/_authenticated/search': typeof AuthenticatedSearchRoute
   '/_authenticated/trips': typeof AuthenticatedTripsRoute
   '/_authenticated/ride/$id': typeof AuthenticatedRideIdRoute
@@ -90,10 +108,26 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/onboarding' | '/home' | '/search' | '/trips' | '/ride/$id'
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/home'
+    | '/profile'
+    | '/publish'
+    | '/search'
+    | '/trips'
+    | '/ride/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/auth' | '/onboarding' | '/home' | '/search' | '/trips' | '/ride/$id'
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/home'
+    | '/profile'
+    | '/publish'
+    | '/search'
+    | '/trips'
+    | '/ride/$id'
   id:
     | '__root__'
     | '/'
@@ -101,6 +135,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/onboarding'
     | '/_authenticated/home'
+    | '/_authenticated/profile'
+    | '/_authenticated/publish'
     | '/_authenticated/search'
     | '/_authenticated/trips'
     | '/_authenticated/ride/$id'
@@ -150,6 +186,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/publish': {
+      id: '/_authenticated/publish'
+      path: '/publish'
+      fullPath: '/publish'
+      preLoaderRoute: typeof AuthenticatedPublishRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/search': {
       id: '/_authenticated/search'
       path: '/search'
@@ -176,6 +226,8 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedPublishRoute: typeof AuthenticatedPublishRoute
   AuthenticatedSearchRoute: typeof AuthenticatedSearchRoute
   AuthenticatedTripsRoute: typeof AuthenticatedTripsRoute
   AuthenticatedRideIdRoute: typeof AuthenticatedRideIdRoute
@@ -183,6 +235,8 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedPublishRoute: AuthenticatedPublishRoute,
   AuthenticatedSearchRoute: AuthenticatedSearchRoute,
   AuthenticatedTripsRoute: AuthenticatedTripsRoute,
   AuthenticatedRideIdRoute: AuthenticatedRideIdRoute,
