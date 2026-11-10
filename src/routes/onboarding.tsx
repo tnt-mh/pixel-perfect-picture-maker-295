@@ -27,7 +27,7 @@ function Onboarding() {
   const { t } = useI18n();
   const [i, setI] = useState(0);
   const nav = useNavigate();
-  const S = slides[i];
+  const S = slides[i] ?? slides[0]!;
   const last = i === slides.length - 1;
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col px-6 py-8">

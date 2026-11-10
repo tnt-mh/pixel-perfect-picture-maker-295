@@ -53,7 +53,7 @@ function SearchPage() {
       if (error) throw error;
       const withDrivers = await attachDrivers(data ?? []);
       const booked = await Promise.all(withDrivers.map((r) => supabase.rpc("seats_booked", { _ride: r.id })));
-      return withDrivers.map((r, i) => ({ ...r, left: r.seats_total - (booked[i].data ?? 0) }));
+      return withDrivers.map((r, i) => ({ ...r, left: r.seats_total - (booked[i]?.data ?? 0) }));
     },
   });
 
